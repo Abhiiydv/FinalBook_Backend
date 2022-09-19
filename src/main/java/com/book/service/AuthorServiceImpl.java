@@ -11,11 +11,11 @@ import com.book.repository.IAuthorRepository;
 @Service
 public class AuthorServiceImpl implements IAuthorService {
 
-	
+
 	@Autowired
 	private IAuthorRepository authorrepo;
-	
-	
+
+
 	@Override
 	public Integer createAuthor(Author a) {
 		// TODO Auto-generated method stub
@@ -31,13 +31,4 @@ public class AuthorServiceImpl implements IAuthorService {
 		return Optional.ofNullable(a);
 	}
 
-
-	/*
-	 * @Override public boolean loginAuth(String email, String password) { // TODO
-	 * Auto-generated method stub Author a =
-	 * authorrepo.findAll().stream().filter(a->a.getAuthorEmail().equalsIgnoreCase(
-	 * email));
-	 * 
-	 * return false; }
-	 */
 }

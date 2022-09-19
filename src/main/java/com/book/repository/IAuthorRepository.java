@@ -10,6 +10,6 @@ public interface IAuthorRepository extends JpaRepository<Author,Integer> {
 	@Query
 	("Select a from Author a where a.authorEmail=?1")
 	Author findByEmail(String authorEmail);
-	
+
 }
 

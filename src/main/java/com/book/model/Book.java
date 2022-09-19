@@ -20,30 +20,30 @@ public class Book {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bookserial")
 	private Integer bookId;
-	
+
 	private String authorName;
-	
+
 	private String logo;
-	
+
 	@Column(length=300)
 	@NotBlank(message = "Book title cannot be blank")
 	private String title;
-	
+
 	@NotBlank(message = "Category cannot be blank")
 	private String category;
-	
+
 	private Double price;
-	
-	
+
+
 	@NotBlank(message = "Publisher cannot be blank")
 	private String publisher;
-	
+
 	@JsonFormat(pattern = "dd-mm-yyyy")
 	private Date publishedDate;
-	
+
 	@Column(length=300)
 	private String content;
-	
+
 	private boolean bookStatus;
 
 	public Integer getBookId() {
@@ -156,6 +156,6 @@ public class Book {
 				+ publishedDate + ", content=" + content + ", bookStatus=" + bookStatus + "]";
 	}
 
-	
-	
+
+
 }

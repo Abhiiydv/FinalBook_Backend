@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.book.exception.ResourceNotFoundException;
-import com.book.model.Author;
 import com.book.model.Book;
 import com.book.repository.IBookRepository;
 
@@ -21,7 +20,7 @@ public class BookServiceImpl implements IBookService{
 	@Override
 	public List<Book> getAllBooks() {
 		// TODO Auto-generated method stub
-		
+
 		return booksRepository.findAll();
 	}
 
@@ -31,19 +30,8 @@ public class BookServiceImpl implements IBookService{
 		return booksRepository.findById(id);
 	}
 
-	
-	/*
-	 * * @Override public List<Book> getAllBooksByAuthorId(Author id) { // TODO
-	 * Auto-generated method stub List<Book> li2=
-	 * booksRepository.findAll().stream().filter(a->
-	 * a.getAuthorId()==id).collect(Collectors.toList());
-	 * 
-	 * return li2; }
-	 */
-	 
-
 	@Override
-	 public Integer saveBook2(Book book) {
+	public Integer saveBook2(Book book) {
 		Book savedBook =  booksRepository.save(book);
 		return savedBook.getBookId();
 	}
@@ -53,9 +41,9 @@ public class BookServiceImpl implements IBookService{
 		// TODO Auto-generated method stub
 		List<Book> lis = booksRepository.findAll();
 		return lis.stream().filter(a->a.getCategory().equalsIgnoreCase(category)).collect(Collectors.toList());
-		
+
 	}
-	
+
 
 	@Override
 	public List<Book> searcBooksbyPublisherName(String publisherName) {
@@ -75,47 +63,41 @@ public class BookServiceImpl implements IBookService{
 	@Override
 	public void deleteBook(Integer id) {
 		booksRepository.deleteById(id);
-		
+
+	}
+
+	@Override 
+	public Book updateBook(Integer bookId, Book book) { 
+
+		Book existingbook = booksRepository.findById(bookId)
+				.orElseThrow(() -> new ResourceNotFoundException("Book", "id", bookId));
+		existingbook.setTitle(book.getTitle());
+		existingbook.setBookStatus(book.isBookStatus());
+		existingbook.setPrice(book.getPrice());
+		existingbook.setPublisher(book.getPublisher());
+		existingbook.setCategory(book.getCategory());
+
+
+		booksRepository.save(existingbook);
+		return existingbook;
 	}
 
 
-	
 
-	
+	@Override
+	public List<Book> searcBooksbyAuthorname(String authorName) {
+		// TODO Auto-generated method stub
+		List<Book> liss = booksRepository.findAll();
+		return liss.stream().filter(p->p.getAuthorName().equalsIgnoreCase(authorName)).collect(Collectors.toList());
+	}
 
-		
-		  @Override 
-		  public Book updateBook(Integer bookId, Book book) { 
-		 
-			  Book existingbook = booksRepository.findById(bookId)
-						.orElseThrow(() -> new ResourceNotFoundException("Book", "id", bookId));
-				existingbook.setTitle(book.getTitle());
-				existingbook.setBookStatus(book.isBookStatus());
-				existingbook.setPrice(book.getPrice());
-				existingbook.setPublisher(book.getPublisher());
-				existingbook.setCategory(book.getCategory());
-				
+	@Override
+	public List<Book> searchbooks(String query) {
+		List<Book> b = booksRepository.searchBooks(query);
+		return b;
 
-				booksRepository.save(existingbook);
-				return existingbook;
-		  }
+	}
 
-		
 
-		@Override
-		public List<Book> searcBooksbyAuthorname(String authorName) {
-			// TODO Auto-generated method stub
-			List<Book> liss = booksRepository.findAll();
-			return liss.stream().filter(p->p.getAuthorName().equalsIgnoreCase(authorName)).collect(Collectors.toList());
-		}
-
-		@Override
-		public List<Book> searchbooks(String query) {
-			List<Book> b = booksRepository.searchBooks(query);
-			return b;
-			
-		}
-		 
-	
 }
 

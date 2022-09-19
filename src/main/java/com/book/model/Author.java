@@ -15,13 +15,13 @@ public class Author {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer AuthorId;
-	
+
 	private String authorName;
-	
+
 	@Column(unique=true)
 	@Email
 	private String authorEmail;
-	
+
 	@NotNull
 	@Size(max=8 , min=5)
 	private String authorPassword;
@@ -70,7 +70,7 @@ public class Author {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-	
+
+
+
 }
