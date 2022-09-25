@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,18 +22,22 @@ public class BookServiceImpl implements IBookService{
 	public List<Book> getAllBooks() {
 		// TODO Auto-generated method stub
 
-		return booksRepository.findAll();
+		
+		List<Book> li =  booksRepository.findAll();
+		return li;
 	}
 
 	@Override
 	public Optional<Book> getbookbyid(Integer id) {
 		// TODO Auto-generated method stub
+	    System.out.println("getting book for "+id);
 		return booksRepository.findById(id);
 	}
 
 	@Override
 	public Integer saveBook2(Book book) {
 		Book savedBook =  booksRepository.save(book);
+		System.out.println("saving book" +book);
 		return savedBook.getBookId();
 	}
 

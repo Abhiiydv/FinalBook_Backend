@@ -149,6 +149,15 @@ public class Book {
 		// TODO Auto-generated constructor stub
 	}
 
+	/*
+	 * public Book(int bookId2, String authorName2, String logo2, String title2,
+	 * String category2, double price2, String publisher2, String string, String
+	 * content2, boolean bookStatus2) { // TODO Auto-generated constructor stub
+	 * this.bookId = bookId; this.authorName = authorName; this.logo = logo;
+	 * this.title = title; this.category = category; this.price = price;
+	 * this.publisher = publisher; this.publishedDate = publishedDate; this.content
+	 * = content; this.bookStatus = bookStatus; }
+	 */
 	@Override
 	public String toString() {
 		return "Book [bookId=" + bookId + ", authorName=" + authorName + ", logo=" + logo + ", title=" + title

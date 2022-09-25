@@ -10,7 +10,7 @@ import com.book.service.IAuthorService;
 
 
 @RestController
-@CrossOrigin(origins="http://localhost:4200/")
+@CrossOrigin(origins="*")
 public class AuthorController {
 
 	@Autowired

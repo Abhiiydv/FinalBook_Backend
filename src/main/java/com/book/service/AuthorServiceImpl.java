@@ -20,6 +20,7 @@ public class AuthorServiceImpl implements IAuthorService {
 	public Integer createAuthor(Author a) {
 		// TODO Auto-generated method stub
 		Author savedAuthor = authorrepo.save(a);
+		System.out.println("saving author" +a);
 		return savedAuthor.getAuthorId();
 	}
 
